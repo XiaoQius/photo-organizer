@@ -1,0 +1,10 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+sqlalchemy==2.0.35
+pydantic==2.9.2
+Pillow==10.4.0
+send2trash==1.8.3
+
+# 可选：iPhone HEIC 照片支持与 HEIC→JPG 转换，未安装时自动降级
+# pillow-heif==0.13.1
+piexif==1.1.3  # 拍摄时间修复：JPEG 无损 EXIF 写入
