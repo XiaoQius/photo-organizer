@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+build/
+*.spec
+
+# 运行数据
+backend/photo_organizer.db
+backend/thumbnails/
+backend/backups/
+backend/uploads/
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+frontend/tsconfig.tsbuildinfo
+
+# 打包产物
+dist/
+
+# 日志与临时
+*.log
+backend.log
+vhead.bin
+test_media/
+
+# 备份
+backups/
+
+# 打包分发产物（Release 页下载，不进仓库）
+照片整理工具-win64/
+照片整理工具-win64.tar.gz
+*.tar.gz
+*.zip
+*.db
+_*.txt

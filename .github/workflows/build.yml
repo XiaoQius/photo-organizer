@@ -1,0 +1,57 @@
+name: 构建 Windows 程序
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 构建前端
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: 安装后端依赖
+        working-directory: backend
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: 打包 exe
+        working-directory: backend
+        run: >
+          pyinstaller --noconfirm --clean --name PhotoOrganizer
+          --workpath build --distpath ../dist
+          --add-data "../frontend/dist;frontend_dist"
+          --add-data "app/data/cities.json;app/data"
+          --collect-all uvicorn --hidden-import piexif run.py
+
+      - name: 压缩产物
+        shell: pwsh
+        run: Compress-Archive -Path dist/PhotoOrganizer -DestinationPath photo-organizer-win64.zip
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-organizer-win64
+          path: photo-organizer-win64.zip
+
+      - name: 发布到 Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: photo-organizer-win64.zip
