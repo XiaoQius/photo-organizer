@@ -1,3 +1,12 @@
+<p align="center">
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license"></a>
+  <img src="https://img.shields.io/badge/python-3.12-3776AB.svg" alt="python">
+  <img src="https://img.shields.io/badge/react-18-61DAFB.svg" alt="react">
+  <img src="https://img.shields.io/badge/fastapi-0.110-009688.svg" alt="fastapi">
+</p>
+
+> 本地运行的照片 / 视频整理工具：扫描 → 按时间 / 地点 / 类别自动归档 → 重复与废片清理。所有整理动作先生成预览计划、确认后才执行，默认进系统回收站，可一键撤销、不丢数据。
+
 # 照片视频整理工具（Photo Organizer）
 
 本地运行的照片视频整理工具：扫描目录 → 按拍摄时间/地点/类别自动归档 → 统一重命名 → 重复与废片清理。所有整理操作先生成预览计划，确认后才执行，支持一键撤销。
@@ -148,3 +157,9 @@ photo-organizer/
 - 撤销可回移文件；删除类动作默认送系统回收站（send2trash）
 - 回收站删除等危险操作需前端二次确认 + 后端 `confirm_trash` 显式校验
 - 所有动作记录在 `organize_logs`，可导出 CSV 审计
+
+---
+
+## 许可证
+
+本项目以 [MIT 许可证](./LICENSE) 开源。
